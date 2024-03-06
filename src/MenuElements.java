@@ -20,21 +20,26 @@ public class MenuElements extends JComponent implements ActionListener {
 		instructionsButton.addActionListener(this);
 	}
 	
-	public void paintElements(Graphics g) {
+	public void paintComponent(Graphics g) {
 		
-		Graphics2D g2d = (Graphics2D) g;
+		Graphics2D g2D = (Graphics2D) g;
 		try {
 			menuBackground = ImageIO.read(new File("images/chalkboardStockPhoto.jpg"));
 		} catch(IOException e) {}
 		
-		g2d.drawImage(menuBackground, 0, 0, 1000, 1200, null);
-		g2d.setColor(Color.WHITE);
-		g2d.drawString("Group 7 Hangman", 300, 300);
+		g2D.drawImage(menuBackground, 0, 0, 1200, 1000, null);
+		g2D.setFont(new Font("Arial", Font.BOLD, 50));
+		g2D.setColor(Color.WHITE);
+		g2D.drawString("Group 7 Hangman", 300, 300);
+		
+		quitButton.setBounds(320, 600, 400, 100);
+		quitButton.setFont(new Font("Arial", Font.BOLD, 30));
+		super.add(quitButton);
 		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource == quitButton) {
+		if(e.getSource() == quitButton) {
 			System.exit(0);
 		}
 	}

@@ -6,7 +6,7 @@ public class HangmanMenu extends JFrame {
 	private static int WIDTH = 1200;
 	private static JFrame menuFrame = new JFrame();
 	
-	private static void HangmanMenu() {
+	public static void HangmanMenu() {
 		menuFrame.setSize(WIDTH, HEIGHT);
 		menuFrame.setResizable(false);
 		menuFrame.setTitle("Team 7 Hangman");
