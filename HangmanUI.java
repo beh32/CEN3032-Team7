@@ -1,0 +1,75 @@
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+public class HangmanUI {
+    public static void main(String[] args) {
+        //Frame that holds everything
+        JFrame frame = new JFrame("Hangman GUI");
+
+        //Panel for the level, navigation controls, pause/play
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 80, 10));
+            ImageIcon backIcon = new ImageIcon("res/angle-left.png");
+            JButton back = new JButton(backIcon); 
+            topPanel.add(back);
+
+            JLabel level = new JLabel("Level 1");
+            level.setFont(new Font("Sans-serif", Font.BOLD, 14));
+            topPanel.add(level);
+
+            ImageIcon pauseIcon = new ImageIcon("res/pause.png");
+            JButton pause = new JButton(pauseIcon); 
+            topPanel.add(pause);
+
+        //Panel for the stick figure and word
+        JPanel centerPanel = new JPanel();
+            ImageIcon stickFigureIcon = new ImageIcon("res/example.png");
+            JLabel exampleStickFigure = new JLabel(stickFigureIcon);
+            centerPanel.add(exampleStickFigure);
+            JLabel wordBlanks = new JLabel("_ _ _ _ _ _");
+            wordBlanks.setFont(new Font("Sans-serif", Font.BOLD, 60));
+            centerPanel.add(wordBlanks);
+
+        //Panel for the alphabet 
+        JPanel alphabetPanel = new JPanel(new BorderLayout(20, 0));
+            JLabel alphabetRow1 = new JLabel("a b c d e f g h i j k l m");
+            alphabetRow1.setFont(new Font("Sans-serif", Font.BOLD, 30));
+            alphabetPanel.add(alphabetRow1, BorderLayout.NORTH);
+            JLabel alphabetRow2 = new JLabel("n o p q r s t u v w x y z");
+            alphabetRow2.setFont(new Font("Sans-serif", Font.BOLD, 30));
+            alphabetPanel.add(alphabetRow2, BorderLayout.SOUTH);
+
+        //Put alphabetPanel inside centerPanel
+        centerPanel.add(alphabetPanel);
+
+        //Panel for letter input
+        JPanel bottomPanel = new JPanel();
+            JLabel guessLabel= new JLabel("Guess a letter!");
+            guessLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
+            bottomPanel.add(guessLabel);
+            JTextField guessField = new JTextField(1);
+            guessField.setFont(new Font("Sans-serif", Font.BOLD, 40));
+            bottomPanel.add(guessField);
+
+        //Set layout manager for the frame
+        frame.setLayout(new BorderLayout());
+
+        // Add the panels to the frame
+        frame.add(topPanel, BorderLayout.NORTH);
+        frame.add(centerPanel, BorderLayout.CENTER);
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Set frame properties
+        frame.setSize(500, 700); // Set size
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation
+        frame.setLocationRelativeTo(null); // Center the frame
+        frame.setVisible(true); // Make the frame visible
+    }
+}
