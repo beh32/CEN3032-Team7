@@ -32,9 +32,21 @@ public class MenuElements extends JComponent implements ActionListener {
 		g2D.setColor(Color.WHITE);
 		g2D.drawString("Group 7 Hangman", 300, 300);
 		
-		quitButton.setBounds(320, 600, 400, 100);
+		startButton.setBounds(400, 400, 300, 100);
+		startButton.setFont(new Font("Arial", Font.BOLD, 30));
+		super.add(startButton);
+		
+		quitButton.setBounds(400, 550, 300, 100);
 		quitButton.setFont(new Font("Arial", Font.BOLD, 30));
 		super.add(quitButton);
+		
+		settingsButton.setBounds(880, 100, 200, 70);
+		settingsButton.setFont(new Font("Arial", Font.BOLD, 20));
+		super.add(settingsButton);
+		
+		instructionsButton.setBounds(880, 200, 200, 70);
+		instructionsButton.setFont(new Font("Arial", Font.BOLD, 20));
+		super.add(instructionsButton);
 		
 	}
 	
