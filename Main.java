@@ -26,6 +26,3 @@ public class Main {
         screen.setVisible(true);
     }
 }
-
-// Change variable/function names, get rid of useless things such as card layout
-// maybe
