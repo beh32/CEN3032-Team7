@@ -18,7 +18,7 @@ public class HangmanUI {
 
         //Panel for the level, navigation controls, pause/play
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 80, 10));
-            ImageIcon backIcon = new ImageIcon("res/angle-left.png");
+            ImageIcon backIcon = new ImageIcon("./images/angle-left.png");
             JButton back = new JButton(backIcon);
             back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -33,7 +33,7 @@ public class HangmanUI {
             level.setFont(new Font("Sans-serif", Font.BOLD, 14));
             topPanel.add(level);
 
-            ImageIcon pauseIcon = new ImageIcon("res/pause.png");
+            ImageIcon pauseIcon = new ImageIcon("./images/pause.png");
             JButton pause = new JButton(pauseIcon); 
             pause.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -44,7 +44,7 @@ public class HangmanUI {
 
         //Panel for the stick figure and word
         JPanel centerPanel = new JPanel();
-            ImageIcon stickFigureIcon = new ImageIcon("res/example.png");
+            ImageIcon stickFigureIcon = new ImageIcon("./images/example.png");
             JLabel exampleStickFigure = new JLabel(stickFigureIcon);
             centerPanel.add(exampleStickFigure);
             /* Once we integrate all of the current branches to main, using the random word getter
