@@ -18,7 +18,7 @@ public class HangmanController {
         
         while (hangmanPartsDrawn <=6 && !wordGuessed) {
             System.out.println(wordDisplayString); //Replace with GUI
-            System.out.println(hangmanPartsDrawn); 
+            System.out.println("Hangman Body Parts Drawn: " + hangmanPartsDrawn); 
 
             userInput = scan.next().charAt(0);  
             validateUserInput();
