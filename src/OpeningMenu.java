@@ -1,12 +1,12 @@
 import javax.swing.JFrame;
 
-public class HangmanMenu extends JFrame {
+public class OpeningMenu extends JFrame {
 
 	private static int HEIGHT = 1000;
 	private static int WIDTH = 1200;
 	private static JFrame menuFrame = new JFrame();
 	
-	public static void HangmanMenu() {
+	public void createOpeningMenu() {
 		menuFrame.setSize(WIDTH, HEIGHT);
 		menuFrame.setResizable(false);
 		menuFrame.setTitle("Team 7 Hangman");

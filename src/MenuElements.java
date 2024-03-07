@@ -55,11 +55,13 @@ public class MenuElements extends JComponent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == quitButton) {
 			System.exit(0);
-		} else if(e,getSource() == startButton) {
-			//START HANGMAN GAME
-		} else if(e,getSource() == settingsButton) {
+		} else if(e.getSource() == startButton) {
+			
+			HangmanUI.main(null);
+		} else if(e.getSource() == settingsButton) {
+			
 			//OPTIONS MENU TO BE ADDED WITH FUTURE SPRINT
-		} else if(e,getSource() == instructionsButton) {
+		} else if(e.getSource() == instructionsButton) {
 			instructionsFrame.setVisible(true);
 		}
 		
