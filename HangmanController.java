@@ -18,7 +18,7 @@ public class HangmanController {
         
         while (hangmanPartsDrawn <=6 && !wordGuessed) {
             System.out.println(wordDisplayString); //Replace with GUI
-            System.out.println("Hangman Body Parts Drawn: " + hangmanPartsDrawn); 
+            System.out.println("Hangman Body Parts Draw: " + hangmanPartsDrawn); 
 
             userInput = scan.next().charAt(0);  
             validateUserInput();
@@ -51,17 +51,20 @@ public class HangmanController {
             usedLetters.add(userInput);
             
             if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word             
+                System.out.println(userInput + " is correct!");
                 editWordDisplay();
+
             
                 if (wordDisplayString.equals(wordToGuess)) 
                     wordGuessed = true;
 
             }
                           
-            else 
+            else {
+                System.out.println(userInput + " is incorrect!");
                 ++hangmanPartsDrawn;
                 // Add hangman UI drawing here
-
+            }
         }
 
         else 
@@ -72,8 +75,7 @@ public class HangmanController {
     private void editWordDisplay() {
         int index = wordToGuess.indexOf(userInput); // Swap code out for word display
                     
-                while(index >= 0) {
-                    System.out.println(index);
+                while(index >= 0) { // find all instances
                     wordDisplayString = wordDisplayString.substring(0, index) + userInput + wordDisplayString.substring(index+1);
                     index = wordToGuess.indexOf(userInput, index+1);
                 }   
