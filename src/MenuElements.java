@@ -13,6 +13,8 @@ public class MenuElements extends JComponent implements ActionListener {
 	private JButton instructionsButton = new JButton("Instructions");
 	private static BufferedImage menuBackground;
 	
+	private InstructionsFrame instructionsFrame = new InstructionsFrame();
+	
 	public MenuElements() {
 		startButton.addActionListener(this);
 		quitButton.addActionListener(this);
@@ -56,9 +58,9 @@ public class MenuElements extends JComponent implements ActionListener {
 		} else if(e,getSource() == startButton) {
 			//START HANGMAN GAME
 		} else if(e,getSource() == settingsButton) {
-			
+			//OPTIONS MENU TO BE ADDED WITH FUTURE SPRINT
 		} else if(e,getSource() == instructionsButton) {
-			
+			instructionsFrame.setVisible(true);
 		}
 		
 	}

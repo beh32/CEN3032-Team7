@@ -15,11 +15,4 @@ public class HangmanMenu extends JFrame {
 		menuFrame.add(openingElement);
 		menuFrame.setVisible(true);
 	}
-	
-	//use for showcase if neccesary
-	//remove this main and comments when main for program is created
-	public static void main(String args[]) {
-		HangmanMenu();
-	}
-	
 }
