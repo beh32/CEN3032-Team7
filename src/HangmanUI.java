@@ -38,6 +38,7 @@ public class HangmanUI {
             pause.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // Not sure what the pause button is for but the logic for that goes in here
+                    new PauseMenu();
                 }
             });
             topPanel.add(pause);
