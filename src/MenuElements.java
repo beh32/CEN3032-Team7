@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class MenuElements extends JComponent implements ActionListener {
+public class MenuElements extends JPanel implements ActionListener {
 
 	private StartButton startButton;
 	private QuitButton quitButton;

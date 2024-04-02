@@ -95,4 +95,8 @@ public class HangmanController {
         return wordGuessed;
     }
 
+    public boolean isGameOver() {
+        return wordGuessed || hangmanPartsDrawn >= 6;
+    }
+
 }

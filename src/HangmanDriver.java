@@ -22,8 +22,10 @@ public class HangmanDriver {
         container.setLayout(cardLayout);
         gameScreen.add(container);
 
+        WordList wordList = new WordList();
+
         MenuElements menuElements = new MenuElements(WIDTH, HEIGHT, gameBackground, container, cardLayout);
-        HangmanUI hangmanUI = new HangmanUI(WIDTH, HEIGHT, container, cardLayout);
+        HangmanUI hangmanUI = new HangmanUI(WIDTH, HEIGHT, container, cardLayout, wordList);
 
         container.add(menuElements, "1");
         container.add(hangmanUI, "2");
@@ -31,3 +33,7 @@ public class HangmanDriver {
         gameScreen.setVisible(true);
     }
 }
+
+// GALLOWS
+// REPLAY GAME
+// DELETE THESE COMMENTS
