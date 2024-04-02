@@ -81,7 +81,7 @@ public class HangmanUI {
             centerPanel.add(createWordDisplay());
             centerPanel.add(createAlphabetPanel());
 
-            JLabel textLabel= new JLabel("");
+            textLabel = new JLabel(" ");
             textLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
             centerPanel.add(textLabel);
             
@@ -129,6 +129,7 @@ public class HangmanUI {
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
+                    
                 }
             });
             bottomPanel.add(guessField);
