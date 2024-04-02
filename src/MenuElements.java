@@ -1,9 +1,16 @@
-import javax.swing.*;
-import java.io.*;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -57,7 +64,10 @@ public class MenuElements extends JComponent implements ActionListener {
 			System.exit(0);
 		} else if(e.getSource() == startButton) {
 			
-			HangmanUI.main(null);
+			
+			HangmanLevels hl = new HangmanLevels();
+			hl.startHangman();
+			
 		} else if(e.getSource() == settingsButton) {
 			
 			//OPTIONS MENU TO BE ADDED WITH FUTURE SPRINT
