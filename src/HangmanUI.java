@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 public class HangmanUI {
 
     private HangmanModel hm;
+    private JLabel wordBlanks;
+    private JLabel textLabel;
     private int currentLevel;
 
     public HangmanUI(int currentLevel) {
@@ -78,6 +80,10 @@ public class HangmanUI {
             centerPanel.add(createStickFigure());
             centerPanel.add(createWordDisplay());
             centerPanel.add(createAlphabetPanel());
+
+            JLabel textLabel= new JLabel("");
+            textLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
+            centerPanel.add(textLabel);
             
             return centerPanel;
 
@@ -91,9 +97,8 @@ public class HangmanUI {
     }
 
     private JLabel createWordDisplay() {
-        JLabel wordBlanks = new JLabel("_ _ _ _ _ _");
+        wordBlanks = new JLabel(hm.getWordDisplayString().replace("", " "));
         wordBlanks.setFont(new Font("Sans-serif", Font.BOLD, 60));
-        
         return wordBlanks;
     }
 
@@ -112,6 +117,7 @@ public class HangmanUI {
     private JPanel createBottomPanel() {
         //Panel for letter input
         JPanel bottomPanel = new JPanel();
+
             JLabel guessLabel= new JLabel("Guess a letter!");
             guessLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
             bottomPanel.add(guessLabel);
@@ -119,17 +125,15 @@ public class HangmanUI {
             guessField.setFont(new Font("Sans-serif", Font.BOLD, 40));
             guessField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // In here is where we will pass the input over to the validation
-                    // InputValidation.validLetter(guessField.getText().charAt(0));
-
-                    // After the input get validated we will then check if the letter is in the word
-                    // InputValidation.wordContains(guessField.getText().charAt(0));
-
-                    // Then we have to render either a new hangman limb or the letter on the correct lines
+                    hm.validateUserInput(guessField.getText().charAt(0));
+                    guessField.setText("");
+                    wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
+                    textLabel.setText(hm.getPrompt());
                 }
             });
             bottomPanel.add(guessField);
 
             return bottomPanel;
     }
+
 }

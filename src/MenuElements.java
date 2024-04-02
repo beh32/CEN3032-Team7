@@ -65,8 +65,8 @@ public class MenuElements extends JComponent implements ActionListener {
 		} else if(e.getSource() == startButton) {
 			
 			
-			HangmanUI hu = new HangmanUI(5);
-			hu.initalizeUI();
+			HangmanLevels hl = new HangmanLevels();
+			hl.startHangman();
 			
 		} else if(e.getSource() == settingsButton) {
 			

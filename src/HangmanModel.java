@@ -6,6 +6,7 @@ public class HangmanModel {
 
     private String wordToGuess;
     private String wordDisplayString; 
+    private String userPrompt;
     private boolean wordGuessed;
     private int hangmanPartsDrawn;
     private char userInput;
@@ -16,17 +17,6 @@ public class HangmanModel {
         initializeRound();
         getWord(); 
         
-        while (hangmanPartsDrawn <=6 && !wordGuessed) {
-            System.out.println(wordDisplayString); //Replace with GUI
-            System.out.println("Hangman Body Parts Draw: " + hangmanPartsDrawn); 
-            System.out.print("Guess: ");
-            userInput = scan.next().charAt(0);  
-            validateUserInput();
-
-        }
-
-        endRound();
-
     }
 
     private void initializeRound() {
@@ -34,7 +24,7 @@ public class HangmanModel {
         wordGuessed = false;
         usedLetters = new HashSet<>(26);
         scan = new Scanner(System.in);
-        System.out.println("Round begin");
+        userPrompt = "Round begin";
     }
 
     private void getWord() {
@@ -46,12 +36,15 @@ public class HangmanModel {
 
     }
 
-    private void validateUserInput() {
+    public void validateUserInput(char userInput) {
+        this.userInput = userInput;
+        System.out.println(wordDisplayString);
         if (Character.isLetter(userInput)  && !usedLetters.contains(userInput)) { // input is letter but not used.
             usedLetters.add(userInput);
             
-            if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word             
-                System.out.println(userInput + " is correct!");
+            if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word
+                
+                userPrompt = userInput + " is correct!";
                 editWordDisplay();
 
             
@@ -61,14 +54,14 @@ public class HangmanModel {
             }
 
             else {
-                System.out.println(userInput + " is incorrect!");
+                userPrompt = userInput + " is incorrect!";
                 ++hangmanPartsDrawn;
                 // Add hangman UI drawing here
             }
         }
 
         else 
-            System.out.println("Cannot use this letter!");
+            userPrompt = "Cannot use this letter!";
         
     }    
 
@@ -101,6 +94,10 @@ public class HangmanModel {
 
     public boolean isWordGuessed() {
         return wordGuessed;
+    }
+
+    public String getPrompt() {
+       return userPrompt; 
     }
 
 }
