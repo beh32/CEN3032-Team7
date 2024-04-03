@@ -12,11 +12,15 @@ public class HangmanModel {
     private char userInput;
     private Set<Character> usedLetters;
     private Scanner scan;
+    private HangmanUI hangmanUI;
+
+    public HangmanModel(HangmanUI hangmanUI) {
+        this.hangmanUI = hangmanUI;
+    }
 
     public void hangmanRound() {
         initializeRound();
-        getWord(); 
-        
+        getWord();
     }
 
     private void initializeRound() {
@@ -58,11 +62,17 @@ public class HangmanModel {
                 ++hangmanPartsDrawn;
                 // Add hangman UI drawing here
             }
+        } else {
+            userPrompt = "Cannot use this letter!";
         }
 
-        else 
-            userPrompt = "Cannot use this letter!";
-        
+        if (wordGuessed || hangmanPartsDrawn == 6) { // Check if the game is over
+            if (wordGuessed)
+                hangmanUI.updateResultMessage("You won!");
+            else
+                hangmanUI.updateResultMessage("You lost! The word was: " + wordToGuess);
+            // Disable input fields or handle end of game actions
+        }
     }    
 
     private void editWordDisplay() {

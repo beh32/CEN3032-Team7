@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,13 +18,15 @@ public class HangmanUI {
     private JLabel wordBlanks;
     private JLabel textLabel;
     private int currentLevel;
+    private JLabel resultLabel;
 
     public HangmanUI(int currentLevel) {
-        hm = new HangmanModel();
+        hm = new HangmanModel(this);
         hm.hangmanRound();
         this.currentLevel = currentLevel;
 
     }
+
     public void initalizeUI() {
         //Frame that holds everything
         JFrame frame = new JFrame("Hangman GUI");
@@ -84,7 +87,12 @@ public class HangmanUI {
             textLabel = new JLabel(" ");
             textLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
             centerPanel.add(textLabel);
-            
+
+            // Add a label to display win/loss message
+            resultLabel = new JLabel("");
+            resultLabel.setFont(new Font("Sans-serif", Font.BOLD, 30));
+            centerPanel.add(resultLabel);
+
             return centerPanel;
 
     }
@@ -135,6 +143,16 @@ public class HangmanUI {
             bottomPanel.add(guessField);
 
             return bottomPanel;
+    }
+
+    // Method to update the win/loss message
+    public void updateResultMessage(String message) {
+        resultLabel.setText(message);
+        if (resultLabel.getText() == "You won!") {
+            resultLabel.setForeground(Color.GREEN);
+        } else {
+            resultLabel.setForeground(Color.RED);
+        }
     }
 
 }
