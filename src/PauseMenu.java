@@ -31,6 +31,7 @@ public class PauseMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //To resume the game, exit out of the pause menu
                 //But keep the game open
+                dispose();
             }
         }); 
         buttonPanel.add(resumeButton);
