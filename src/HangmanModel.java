@@ -4,7 +4,8 @@ import java.util.Set;
 
 public class HangmanModel {
 
-    private String wordToGuess;
+	private String difficultyString = "easy"; //CHANGE based on button selected "easy", "medium", "hard"
+	private String wordToGuess;
     private String wordDisplayString; 
     private String userPrompt;
     private boolean wordGuessed;
@@ -12,6 +13,7 @@ public class HangmanModel {
     private char userInput;
     private Set<Character> usedLetters;
     private Scanner scan;
+    private Difficulty difficulty = new Difficulty(difficultyString);
 
     public void hangmanRound() {
         initializeRound();
@@ -28,7 +30,7 @@ public class HangmanModel {
     }
 
     private void getWord() {
-        wordToGuess = "amazing"; // default word use wordbank class for wordToGuess/wordDisplayString
+    	wordToGuess = difficulty.getWords(difficultyString); //gets word from difficulty class
         wordDisplayString = "";
 
         for (int i = 0; i < wordToGuess.length(); ++i) //blank spaces equal to word length 
