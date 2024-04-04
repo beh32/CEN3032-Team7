@@ -78,7 +78,7 @@ public class HangmanModel {
     public void endRound() { //FIX INSTANCE PROBLEM
 
         if (wordGuessed) 
-            userPrompt = "    You won!";
+            userPrompt = "You won!    ";
         else
             userPrompt = "You lost! The word was: " + wordToGuess;
         // Disable input fields or handle end of game actions
