@@ -16,13 +16,17 @@ import javax.swing.JTextField;
 public class HangmanUI {
 
     private HangmanModel hm;
+    private HangmanLevels hl;
+    private JFrame frame;
+    private JButton b2;
     private JLabel wordBlanks;
     private JLabel textLabel;
     private int currentLevel;
     private JPanel centerPanel;
 
-    public HangmanUI(int currentLevel) {
+    public HangmanUI(int currentLevel, HangmanLevels hl) {
         hm = new HangmanModel();
+        this.hl = hl;
         hm.hangmanRound();
         this.currentLevel = currentLevel;
 
@@ -30,7 +34,7 @@ public class HangmanUI {
 
     public void initalizeUI() {
         //Frame that holds everything
-        JFrame frame = new JFrame("Hangman GUI");
+        frame = new JFrame("Hangman GUI");
 
         //Set layout manager for the frame
         frame.setLayout(new BorderLayout());
@@ -81,7 +85,7 @@ public class HangmanUI {
 
     private JPanel createCenterPanel() {
         //Panel for the stick figure and word
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
             centerPanel.add(createStickFigure(0));
             centerPanel.add(createWordDisplay());
             centerPanel.add(createAlphabetPanel());
@@ -165,6 +169,7 @@ public class HangmanUI {
                     updateCenterPanel();
 
                     if (hm.getHangmanPartsDrawn() == 6) {
+                        b2.setText("Restart");
                         cardLayout.next(bottomPanel);
                         hm.endRound();
                         textLabel.setForeground(Color.RED);
@@ -187,8 +192,31 @@ public class HangmanUI {
             bottomPanel.add(card1);
 
             JPanel card2 = new JPanel();
-            card2.add(new JButton("Restart"));
-            card2.add(new JButton("Continue"));
+            JButton b1 = new JButton("Return to Menu");
+            b1.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+
+                    frame.setVisible(false);
+                    OpeningMenu hangmanMenu = new OpeningMenu();
+                    hangmanMenu.createOpeningMenu();
+                }
+            }); 
+            card2.add(b1);
+
+            b2 = new JButton("Continue");
+            b2.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    
+                    frame.setVisible(false);
+                    hl.increaseLevel();
+
+                    if (!hm.isWordGuessed()) 
+                        hl = new HangmanLevels();
+                    hl.startHangman();
+                }
+            }); 
+            card2.add(b2);
+
             bottomPanel.add(card2);
             
 
