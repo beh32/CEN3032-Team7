@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class HangmanModel {
 
-	private String difficultyString = "easy"; //CHANGE based on button selected "easy", "medium", "hard"
+	private String difficultyString; //CHANGE based on button selected "easy", "medium", "hard"
 	private String wordToGuess;
     private String wordDisplayString; 
     private String userPrompt;
@@ -13,11 +13,13 @@ public class HangmanModel {
     private char userInput;
     private Set<Character> usedLetters;
     private Scanner scan;
-    private Difficulty difficulty = new Difficulty(difficultyString);
+    private Difficulty difficulty;
 
-    public void hangmanRound() {
-        initializeRound();
+    public void hangmanRound(String difficultyString) {
+        System.out.println(difficultyString);
+        difficulty = new Difficulty(difficultyString);
         getWord();
+        initializeRound();
     }
 
     private void initializeRound() {
@@ -74,7 +76,7 @@ public class HangmanModel {
                 }   
     }
 
-    public void endRound() {
+    public void endRound() { //FIX INSTANCE PROBLEM
         scan.close();
 
         if (wordGuessed) 

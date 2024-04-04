@@ -23,12 +23,15 @@ public class HangmanUI {
     private JLabel textLabel;
     private int currentLevel;
     private JPanel centerPanel;
+    private String hangmanDifficulty;
 
-    public HangmanUI(int currentLevel, HangmanLevels hl) {
+    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
         hm = new HangmanModel();
         this.hl = hl;
-        hm.hangmanRound();
+        this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;
+        hm.hangmanRound(hangmanDifficulty);
+        
 
     }
 
@@ -58,9 +61,9 @@ public class HangmanUI {
             JButton back = new JButton(backIcon);
             back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // This button would take you back to the main menu I am assuming
-                    // We need to decide how we plan on rendering each of the different screens
-                    // In the past, I have used a layered pane to swap between them
+                    frame.setVisible(false);
+                    OpeningMenu hangmanMenu = new OpeningMenu();
+                    hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
                 }
             }); 
 
@@ -198,7 +201,7 @@ public class HangmanUI {
 
                     frame.setVisible(false);
                     OpeningMenu hangmanMenu = new OpeningMenu();
-                    hangmanMenu.createOpeningMenu();
+                    hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
                 }
             }); 
             card2.add(b1);
@@ -212,7 +215,8 @@ public class HangmanUI {
 
                     if (!hm.isWordGuessed()) 
                         hl = new HangmanLevels();
-                    hl.startHangman();
+                        
+                    hl.startHangman(hangmanDifficulty); //FIX INSTANCE PROBLEM
                 }
             }); 
             card2.add(b2);

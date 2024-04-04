@@ -1,14 +1,15 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
+import java.awt.BorderLayout;
 import java.awt.Font;
-import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 
 public class PauseMenu extends JFrame {
@@ -53,7 +54,7 @@ public class PauseMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Doesn't work
                 OpeningMenu hangmanMenu = new OpeningMenu();
-                hangmanMenu.createOpeningMenu();
+                hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
             }
         }); 
         buttonPanel.add(mainMenuButton);
