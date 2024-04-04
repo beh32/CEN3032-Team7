@@ -19,6 +19,7 @@ public class HangmanUI {
     private JLabel wordBlanks;
     private JLabel textLabel;
     private int currentLevel;
+    private JPanel centerPanel;
 
     public HangmanUI(int currentLevel) {
         hm = new HangmanModel();
@@ -81,7 +82,7 @@ public class HangmanUI {
     private JPanel createCenterPanel() {
         //Panel for the stick figure and word
         JPanel centerPanel = new JPanel();
-            centerPanel.add(createStickFigure());
+            centerPanel.add(createStickFigure(0));
             centerPanel.add(createWordDisplay());
             centerPanel.add(createAlphabetPanel());
 
@@ -93,8 +94,35 @@ public class HangmanUI {
 
     }
 
-    private JLabel createStickFigure() {
-        ImageIcon stickFigureIcon = new ImageIcon("./images/example.png");
+    private void updateCenterPanel() {
+        centerPanel.removeAll();
+        centerPanel.add(createStickFigure(hm.getHangmanPartsDrawn()));
+        centerPanel.add(createWordDisplay());
+        centerPanel.add(createAlphabetPanel());
+        centerPanel.add(textLabel);
+        
+        centerPanel.revalidate();
+        centerPanel.repaint();
+    }
+
+    private JLabel createStickFigure(int parts) {
+        ImageIcon stickFigureIcon = new ImageIcon();
+        if (parts == 1) {
+            stickFigureIcon = new ImageIcon("./images/1.png");
+        } else if (parts == 2) {
+            stickFigureIcon = new ImageIcon("./images/2.png");
+        } else if (parts == 3) {
+            stickFigureIcon = new ImageIcon("./images/3.png");
+        } else if (parts == 4) {
+            stickFigureIcon = new ImageIcon("./images/4.png");
+        } else if (parts == 5) {
+            stickFigureIcon = new ImageIcon("./images/5.png");
+        } else if (parts == 6) {
+            stickFigureIcon = new ImageIcon("./images/6.png");
+        } else {
+            stickFigureIcon = new ImageIcon("./images/empty.png");
+        }
+        
         JLabel exampleStickFigure = new JLabel(stickFigureIcon);
         
         return exampleStickFigure;
@@ -134,6 +162,7 @@ public class HangmanUI {
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
+                    updateCenterPanel();
 
                     if (hm.getHangmanPartsDrawn() == 6) {
                         cardLayout.next(bottomPanel);
@@ -165,5 +194,4 @@ public class HangmanUI {
 
             return bottomPanel;
     }
-
 }
