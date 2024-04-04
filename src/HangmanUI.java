@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 public class HangmanUI {
 
@@ -117,7 +116,7 @@ public class HangmanUI {
         } else if (parts == 5) {
             stickFigureIcon = new ImageIcon("./images/5.png");
         } else if (parts == 6) {
-            stickFigureIcon = new ImageIcon("./images/5.png");
+            stickFigureIcon = new ImageIcon("./images/6.png");
         } else {
             stickFigureIcon = new ImageIcon("./images/empty.png");
         }
