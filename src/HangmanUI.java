@@ -23,6 +23,8 @@ public class HangmanUI {
     private JLabel textLabel;
     private int currentLevel;
     private JPanel centerPanel;
+    private String row1 = "a b c d e f g h i j k l m ";
+    private String row2 = "n o p q r s t u v w x y z ";
 
     public HangmanUI(int currentLevel, HangmanLevels hl) {
         hm = new HangmanModel();
@@ -98,10 +100,11 @@ public class HangmanUI {
 
     }
 
-    private void updateCenterPanel() {
+    private void updateCenterPanel(char guess) {
         centerPanel.removeAll();
         centerPanel.add(createStickFigure(hm.getHangmanPartsDrawn()));
         centerPanel.add(createWordDisplay());
+        updateAlphabet(guess);
         centerPanel.add(createAlphabetPanel());
         centerPanel.add(textLabel);
         
@@ -140,14 +143,22 @@ public class HangmanUI {
 
     private JPanel createAlphabetPanel() {
         JPanel alphabetPanel = new JPanel(new BorderLayout(20, 0));
-        JLabel alphabetRow1 = new JLabel("a b c d e f g h i j k l m");
+        JLabel alphabetRow1 = new JLabel(row1);
         alphabetRow1.setFont(new Font("Sans-serif", Font.BOLD, 30));
         alphabetPanel.add(alphabetRow1, BorderLayout.NORTH);
-        JLabel alphabetRow2 = new JLabel("n o p q r s t u v w x y z");
+        JLabel alphabetRow2 = new JLabel(row2);
         alphabetRow2.setFont(new Font("Sans-serif", Font.BOLD, 30));
         alphabetPanel.add(alphabetRow2, BorderLayout.SOUTH);
         
         return alphabetPanel;
+    }
+
+    private void updateAlphabet(char guess) {
+        if (guess <= 'm') {
+            row1 = row1.replace(guess + " ", "  ");
+        } else {
+            row2 = row2.replace(guess + " ", "  ");
+        }
     }
 
     private JPanel createBottomPanel() {
@@ -163,10 +174,11 @@ public class HangmanUI {
             guessField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     hm.validateUserInput(guessField.getText().charAt(0));
+                    char guess = Character.toLowerCase(guessField.getText().charAt(0));
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
-                    updateCenterPanel();
+                    updateCenterPanel(guess);
 
                     if (hm.getHangmanPartsDrawn() == 6) {
                         b2.setText("Restart");
