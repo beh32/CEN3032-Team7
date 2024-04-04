@@ -32,10 +32,10 @@ public class Difficulty {
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader("src/wordbank.txt"))) {
 			String word;
-			while((word = reader.readLine()) != null & selectedWord == "") {
+			while((word = reader.readLine()) != null && selectedWord == "") {
 			if(word.length() <= maxLength) {
 				wordCount++;
-			} if (random.nextDouble() > 1.0 / (wordCount * 0.001 * random.nextDouble())) {
+			} if (random.nextInt(58109) <= 10 && word.length() <= maxLength) {
 				selectedWord = word;	
 			}
 			if(wordCount >= 58109) {
