@@ -8385,9 +8385,6 @@ circulating
 circulation
 circulations
 circulatory
-circumcise
-circumcised
-circumcision
 circumference
 circumferences
 circumferential
@@ -11792,8 +11789,6 @@ cubit
 cubits
 cuboid
 cubs
-cuckold
-cuckolded
 cuckoo
 cuckoos
 cucumber

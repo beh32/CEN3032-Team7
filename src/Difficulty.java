@@ -35,10 +35,10 @@ public class Difficulty {
 			while((word = reader.readLine()) != null && selectedWord == "") {
 			if(word.length() <= maxLength) {
 				wordCount++;
-			} if (random.nextInt(57679) <= 10 && word.length() <= maxLength) {
+			} if (random.nextInt(57962) <= 20 && word.length() <= maxLength) {
 				selectedWord = word;
 			}
-			if(wordCount >= 57679) {
+			if(wordCount >= 57962) {
 				break;
 			}
 			}

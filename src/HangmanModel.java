@@ -3,7 +3,6 @@ import java.util.Set;
 
 public class HangmanModel {
 
-	private String difficultyString; //CHANGE based on button selected "easy", "medium", "hard"
 	private String wordToGuess;
     private String wordDisplayString; 
     private String userPrompt;
