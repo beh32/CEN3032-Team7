@@ -36,7 +36,7 @@ public class Difficulty {
 			if(word.length() <= maxLength) {
 				wordCount++;
 			} if (random.nextInt(58109) <= 10 && word.length() <= maxLength) {
-				selectedWord = word;	
+				selectedWord = word;
 			}
 			if(wordCount >= 58109) {
 				break;

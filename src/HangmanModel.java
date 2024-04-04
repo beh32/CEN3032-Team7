@@ -57,7 +57,11 @@ public class HangmanModel {
                 // Add hangman UI drawing here
             }
         } else {
-            userPrompt = "Cannot use this letter!";
+            if (!usedLetters.contains(userInput)) 
+                userPrompt = "Please choose a Letter";    
+            else 
+                userPrompt = "Letter already used";    
+            
         }
 
     }    

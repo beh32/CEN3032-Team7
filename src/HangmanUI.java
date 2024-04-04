@@ -176,8 +176,8 @@ public class HangmanUI {
             guessField.setFont(new Font("Sans-serif", Font.BOLD, 40));
             guessField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    hm.validateUserInput(guessField.getText().charAt(0));
                     char guess = Character.toLowerCase(guessField.getText().charAt(0));
+                    hm.validateUserInput(guess);
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
