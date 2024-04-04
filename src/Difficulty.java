@@ -1,38 +1,50 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Random;
 
 public class DIfficulty {
 	String fileName = "wordbank.txt";
-	private List<String> easyWords;
-	private List<String> mediumWords;
-	private List<String> hardWords;
+	private Random random;
+	private int maxLength;
 	
-	public Difficulty(List<String> easyWords, List<String> mediumWords, List<String> hardWords) {
+	public Difficulty() {
+		random = new Random();
+		setMaxLength(difficulty);
+	}
+	
+	private void setMaxLength(String difficulty) {
+		switch(difficulty) {
+		case "easy":
+			maxLength = 5;
+			break;
+		case "medium":
+			maxLength = 7;
+			break;
+		case "hard":
+			maxLength = 9;
+			break;
+		}
+	}
+	
+	public getWords(String difficulty) {
+		String selectedWord = null;
+		int wordCount = 0;
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-			String line;
-			//sort words by length
-			if(!line.isEmpty()) {
-			if(line.length() <= 5) {
-				easyWords.add(line);
-			} else if (line.length() <= 7) {
-				mediumWords.add(line);
-			} else {
-				hardWords.add(line);
+			String word;
+			while((word = reader.readLine()) != null) {
+			if(word.length() <= maxLength) {
+				wordCount++;
+			} if (random.nextInt(wordCount) == 0) {
+				selectedWord = word;	
 			}
+			}
+			if(wordCount >= 58109) {
+				break;
 			}
 		} catch(IOException e) {}
-	}
-		
-	public List<String> getEasyWords() {
-		return easyWords;
+		return selectedWord;
 	}
 	
-	public List<String> getMediumWords() {
-		return mediumWords;
-	}
-	
-	public List<String> getHardWords() {
-		return hardWords;
-	}
 }

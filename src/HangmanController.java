@@ -4,7 +4,8 @@ import java.util.Set;
 
 public class HangmanController {
 
-    private String wordToGuess;
+    private Difficulty difficulty;
+	private String wordToGuess;
     private String wordDisplayString; 
     private boolean wordGuessed;
     private int hangmanPartsDrawn;
@@ -38,7 +39,7 @@ public class HangmanController {
     }
 
     private void getWord() {
-        wordToGuess = "amazing"; // default word use wordbank class for wordToGuess/wordDisplayString
+        wordToGuess = difficulty.getWord(String difficulty); // default word use wordbank class for wordToGuess/wordDisplayString
         wordDisplayString = "";
 
         for (int i = 0; i < wordToGuess.length(); ++i) //blank spaces equal to word length 
