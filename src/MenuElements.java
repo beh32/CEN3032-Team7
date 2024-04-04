@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -67,9 +68,14 @@ public class MenuElements extends JComponent implements ActionListener {
 			System.exit(0);
 		} else if(e.getSource() == startButton) {
 			
+
+			String[] options = { "easy", "medium", "hard" };
+    		var selection = JOptionPane.showOptionDialog(null, "Select one:", "Choose a Difficulty", 
+			0, 3, null, options, options[0]);
+    
 			menuFrame.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
-			hl.startHangman();
+			hl.startHangman(options[selection]); //FIX INSTANCE PROBLEM
 			
 			
 		} else if(e.getSource() == settingsButton) {
