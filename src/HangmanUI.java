@@ -130,6 +130,12 @@ public class HangmanUI {
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
+
+                    if (hm.getHangmanPartsDrawn() == 6 || hm.isWordGuessed()) {
+                        hm.endRound();
+                        textLabel.setText(hm.getPrompt());
+                    }
+
                     
                 }
             });

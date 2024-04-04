@@ -74,13 +74,13 @@ public class HangmanModel {
                 }   
     }
 
-    private void endRound() {
+    public void endRound() {
         scan.close();
 
         if (wordGuessed) 
-            System.out.println(wordDisplayString + "\nYou Won!");
+            userPrompt = "You Won! :)";
         else
-            System.out.println(wordToGuess + "\nYou Lost :(");
+            userPrompt = "You Lost :(";
             
     }
 
