@@ -11,8 +11,9 @@ public class OpeningMenu extends JFrame {
 		menuFrame.setResizable(false);
 		menuFrame.setTitle("Team 7 Hangman");
 		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		MenuElements openingElement = new MenuElements();
+		MenuElements openingElement = new MenuElements(menuFrame);
 		menuFrame.add(openingElement);
 		menuFrame.setVisible(true);
 	}
+
 }

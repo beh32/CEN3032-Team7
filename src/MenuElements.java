@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -21,8 +22,10 @@ public class MenuElements extends JComponent implements ActionListener {
 	private static BufferedImage menuBackground;
 	
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
-	
-	public MenuElements() {
+	private JFrame menuFrame;
+
+	public MenuElements(JFrame menuFrame) {
+		this.menuFrame = menuFrame;
 		startButton.addActionListener(this);
 		quitButton.addActionListener(this);
 		settingsButton.addActionListener(this);
@@ -64,9 +67,10 @@ public class MenuElements extends JComponent implements ActionListener {
 			System.exit(0);
 		} else if(e.getSource() == startButton) {
 			
-			
+			menuFrame.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
 			hl.startHangman();
+			
 			
 		} else if(e.getSource() == settingsButton) {
 			

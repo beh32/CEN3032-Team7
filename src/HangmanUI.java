@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -18,10 +19,9 @@ public class HangmanUI {
     private JLabel wordBlanks;
     private JLabel textLabel;
     private int currentLevel;
-    private JLabel resultLabel;
 
     public HangmanUI(int currentLevel) {
-        hm = new HangmanModel(this);
+        hm = new HangmanModel();
         hm.hangmanRound();
         this.currentLevel = currentLevel;
 
@@ -85,14 +85,9 @@ public class HangmanUI {
             centerPanel.add(createWordDisplay());
             centerPanel.add(createAlphabetPanel());
 
-            textLabel = new JLabel(" ");
-            textLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
+            textLabel = new JLabel("");
+            textLabel.setFont(new Font("Sans-serif", Font.BOLD, 30));
             centerPanel.add(textLabel);
-
-            // Add a label to display win/loss message
-            resultLabel = new JLabel("");
-            resultLabel.setFont(new Font("Sans-serif", Font.BOLD, 30));
-            centerPanel.add(resultLabel);
 
             return centerPanel;
 
@@ -124,12 +119,13 @@ public class HangmanUI {
     }
 
     private JPanel createBottomPanel() {
-        //Panel for letter input
-        JPanel bottomPanel = new JPanel();
+        JPanel bottomPanel = new JPanel(new CardLayout());
+        CardLayout cardLayout = (CardLayout) bottomPanel.getLayout();
+        JPanel card1 = new JPanel();
 
             JLabel guessLabel= new JLabel("Guess a letter!");
             guessLabel.setFont(new Font("Sans-serif", Font.BOLD, 40));
-            bottomPanel.add(guessLabel);
+            card1.add(guessLabel);
             JTextField guessField = new JTextField(1);
             guessField.setFont(new Font("Sans-serif", Font.BOLD, 40));
             guessField.addActionListener(new ActionListener() {
@@ -139,27 +135,35 @@ public class HangmanUI {
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
 
-                    if (hm.getHangmanPartsDrawn() == 6 || hm.isWordGuessed()) {
+                    if (hm.getHangmanPartsDrawn() == 6) {
+                        cardLayout.next(bottomPanel);
                         hm.endRound();
+                        textLabel.setForeground(Color.RED);
                         textLabel.setText(hm.getPrompt());
                     }
 
-                    
+                    if (hm.isWordGuessed()) {
+                        cardLayout.next(bottomPanel);
+                        hm.endRound();
+                        textLabel.setForeground(Color.GREEN);
+                        textLabel.setText(hm.getPrompt());
+                    }        
+            
                 }
-            });
-            bottomPanel.add(guessField);
+
+                });
+                
+            
+            card1.add(guessField);
+            bottomPanel.add(card1);
+
+            JPanel card2 = new JPanel();
+            card2.add(new JButton("Restart"));
+            card2.add(new JButton("Continue"));
+            bottomPanel.add(card2);
+            
 
             return bottomPanel;
-    }
-
-    // Method to update the win/loss message
-    public void updateResultMessage(String message) {
-        resultLabel.setText(message);
-        if (resultLabel.getText() == "You won!") {
-            resultLabel.setForeground(Color.GREEN);
-        } else {
-            resultLabel.setForeground(Color.RED);
-        }
     }
 
 }
