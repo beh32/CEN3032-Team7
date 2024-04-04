@@ -15,8 +15,7 @@ public class HangmanModel {
 
     public void hangmanRound() {
         initializeRound();
-        getWord(); 
-        
+        getWord();
     }
 
     private void initializeRound() {
@@ -58,11 +57,10 @@ public class HangmanModel {
                 ++hangmanPartsDrawn;
                 // Add hangman UI drawing here
             }
+        } else {
+            userPrompt = "Cannot use this letter!";
         }
 
-        else 
-            userPrompt = "Cannot use this letter!";
-        
     }    
 
     private void editWordDisplay() {
@@ -74,13 +72,14 @@ public class HangmanModel {
                 }   
     }
 
-    private void endRound() {
+    public void endRound() {
         scan.close();
 
         if (wordGuessed) 
-            System.out.println(wordDisplayString + "\nYou Won!");
+            userPrompt = "    You won!";
         else
-            System.out.println(wordToGuess + "\nYou Lost :(");
+            userPrompt = "You lost! The word was: " + wordToGuess;
+        // Disable input fields or handle end of game actions
             
     }
 
