@@ -2,22 +2,33 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class HangmanModel {
+public class HangmanController {
 
 	private String difficultyString = "easy"; //CHANGE based on button selected "easy", "medium", "hard"
 	private String wordToGuess;
     private String wordDisplayString; 
-    private String userPrompt;
     private boolean wordGuessed;
     private int hangmanPartsDrawn;
     private char userInput;
     private Set<Character> usedLetters;
     private Scanner scan;
     private Difficulty difficulty = new Difficulty(difficultyString);
-
+    
     public void hangmanRound() {
         initializeRound();
-        getWord();
+        getWord(); 
+        
+        while (hangmanPartsDrawn <=6 && !wordGuessed) {
+            System.out.println(wordDisplayString); //Replace with GUI
+            System.out.println("Hangman Body Parts Draw: " + hangmanPartsDrawn); 
+            System.out.print("Guess: ");
+            userInput = scan.next().charAt(0);  
+            validateUserInput();
+
+        }
+
+        endRound();
+
     }
 
     private void initializeRound() {
@@ -25,11 +36,11 @@ public class HangmanModel {
         wordGuessed = false;
         usedLetters = new HashSet<>(26);
         scan = new Scanner(System.in);
-        userPrompt = "Round begin";
+        System.out.println("Round begin");
     }
 
     private void getWord() {
-    	wordToGuess = difficulty.getWords(difficultyString); //gets word from difficulty class
+        wordToGuess = difficulty.getWords(difficultyString); //gets word from difficulty class
         wordDisplayString = "";
 
         for (int i = 0; i < wordToGuess.length(); ++i) //blank spaces equal to word length 
@@ -37,15 +48,12 @@ public class HangmanModel {
 
     }
 
-    public void validateUserInput(char userInput) {
-        this.userInput = userInput;
-        System.out.println(wordDisplayString);
+    private void validateUserInput() {
         if (Character.isLetter(userInput)  && !usedLetters.contains(userInput)) { // input is letter but not used.
             usedLetters.add(userInput);
             
-            if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word
-                
-                userPrompt = userInput + " is correct!";
+            if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word             
+                System.out.println(userInput + " is correct!");
                 editWordDisplay();
 
             
@@ -53,16 +61,17 @@ public class HangmanModel {
                     wordGuessed = true;
 
             }
-
+                          
             else {
-                userPrompt = userInput + " is incorrect!";
+                System.out.println(userInput + " is incorrect!");
                 ++hangmanPartsDrawn;
                 // Add hangman UI drawing here
             }
-        } else {
-            userPrompt = "Cannot use this letter!";
         }
 
+        else 
+            System.out.println("Cannot use this letter!");
+        
     }    
 
     private void editWordDisplay() {
@@ -74,31 +83,22 @@ public class HangmanModel {
                 }   
     }
 
-    public void endRound() {
+    private void endRound() {
         scan.close();
 
         if (wordGuessed) 
-            userPrompt = "    You won!";
+            System.out.println(wordDisplayString + "\nYou Won!");
         else
-            userPrompt = "You lost! The word was: " + wordToGuess;
-        // Disable input fields or handle end of game actions
+            System.out.println(wordToGuess + "\nYou Lost :(");
             
-    }
-
-    public String getWordDisplayString() {
-        return wordDisplayString;
-    }
-
-    public int getHangmanPartsDrawn() {
-        return hangmanPartsDrawn;
     }
 
     public boolean isWordGuessed() {
         return wordGuessed;
     }
 
-    public String getPrompt() {
-       return userPrompt; 
+    public boolean isGameOver() {
+        return wordGuessed || hangmanPartsDrawn >= 6;
     }
 
 }
