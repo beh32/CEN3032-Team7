@@ -27,7 +27,7 @@ public class HangmanModel {
     }
 
     private void getWord() {
-    	wordToGuess = difficulty.getWords(difficultyString); //gets word from difficulty class
+    	wordToGuess = difficulty.getWords(); //gets word from difficulty class
         wordDisplayString = "";
 
         for (int i = 0; i < wordToGuess.length(); ++i) //blank spaces equal to word length 

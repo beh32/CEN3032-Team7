@@ -26,7 +26,7 @@ public class Difficulty {
 		}
 	}
 	
-	public String getWords(String difficulty) {
+	public String getWords() {
 		String selectedWord = "";
 		int wordCount = 0;
 		
@@ -35,10 +35,10 @@ public class Difficulty {
 			while((word = reader.readLine()) != null && selectedWord == "") {
 			if(word.length() <= maxLength) {
 				wordCount++;
-			} if (random.nextInt(58109) <= 10 && word.length() <= maxLength) {
+			} if (random.nextInt(57679) <= 10 && word.length() <= maxLength) {
 				selectedWord = word;
 			}
-			if(wordCount >= 58109) {
+			if(wordCount >= 57679) {
 				break;
 			}
 			}
