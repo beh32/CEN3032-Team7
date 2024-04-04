@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
-public class DIfficulty {
+public class Difficulty {
 	String fileName = "wordbank.txt";
 	private Random random;
 	private int maxLength;
@@ -27,7 +27,7 @@ public class DIfficulty {
 		}
 	}
 	
-	public getWords(String difficulty) {
+	public String getWords(String difficulty) {
 		String selectedWord = null;
 		int wordCount = 0;
 		
@@ -39,9 +39,9 @@ public class DIfficulty {
 			} if (random.nextInt(wordCount) == 0) {
 				selectedWord = word;	
 			}
-			}
 			if(wordCount >= 58109) {
 				break;
+			}
 			}
 		} catch(IOException e) {}
 		return selectedWord;
