@@ -158,9 +158,9 @@ public class HangmanUI {
 
     private void updateAlphabet(char guess) {
         if (guess <= 'm') {
-            row1 = row1.replace(guess + " ", "  ");
+            row1 = row1.replace(guess + " ", "   ");
         } else {
-            row2 = row2.replace(guess + " ", "  ");
+            row2 = row2.replace(guess + " ", "   ");
         }
     }
 
