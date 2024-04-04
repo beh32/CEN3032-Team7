@@ -1,5 +1,4 @@
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class HangmanModel {
@@ -12,11 +11,9 @@ public class HangmanModel {
     private int hangmanPartsDrawn;
     private char userInput;
     private Set<Character> usedLetters;
-    private Scanner scan;
     private Difficulty difficulty;
 
     public void hangmanRound(String difficultyString) {
-        System.out.println(difficultyString);
         difficulty = new Difficulty(difficultyString);
         getWord();
         initializeRound();
@@ -26,7 +23,6 @@ public class HangmanModel {
         hangmanPartsDrawn = 0;
         wordGuessed = false;
         usedLetters = new HashSet<>(26);
-        scan = new Scanner(System.in);
         userPrompt = "Round begin";
     }
 
@@ -41,7 +37,6 @@ public class HangmanModel {
 
     public void validateUserInput(char userInput) {
         this.userInput = userInput;
-        System.out.println(wordDisplayString);
         if (Character.isLetter(userInput)  && !usedLetters.contains(userInput)) { // input is letter but not used.
             usedLetters.add(userInput);
             
@@ -77,7 +72,6 @@ public class HangmanModel {
     }
 
     public void endRound() { //FIX INSTANCE PROBLEM
-        scan.close();
 
         if (wordGuessed) 
             userPrompt = "    You won!";
