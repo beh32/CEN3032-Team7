@@ -43,6 +43,7 @@ public class PauseMenu extends JFrame {
         optionsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //This would bring up the options menu
+                new OptionsMenu();
             }
         }); 
         buttonPanel.add(optionsButton);

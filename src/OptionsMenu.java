@@ -1,15 +1,8 @@
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 
 public class OptionsMenu extends JFrame {
@@ -17,16 +10,18 @@ public class OptionsMenu extends JFrame {
         super("Options Menu");
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
-        JPanel layout = new JPanel(new GridBagLayout());
-        layout.setBorder(new EmptyBorder(5, 5, 5, 5));
+        JPanel layout = new JPanel();
+        layout.setLayout(new BoxLayout(layout, BoxLayout.Y_AXIS));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(10, 1, 10, 5));
-        //"Game Paused"
-        JLabel paused = new JLabel("Game Paused");
-        paused.setFont(new Font("Sans-serif", Font.BOLD, 16));
-        buttonPanel.add(paused);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(0, 1, 10, 5));
         
-        //Resume button
+        //"Options"
+        JLabel options = new JLabel("Options");
+        options.setFont(new Font("Sans-serif", Font.BOLD, 16));
+        buttonPanel.add(options);
+        
+        //Return to game
         JButton resumeButton = new JButton("Return to Game");
         resumeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -37,18 +32,8 @@ public class OptionsMenu extends JFrame {
         }); 
         buttonPanel.add(resumeButton);
 
-
-        //Options button
-        JButton optionsButton = new JButton("Options");
-        optionsButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //This would bring up the options menu
-            }
-        }); 
-        buttonPanel.add(optionsButton);
-
         //Main menu button
-        JButton mainMenuButton = new JButton("Main Menu");
+        JButton mainMenuButton = new JButton("Return to Main Menu");
         // Add the controller as an ActionListener to the button
         mainMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -59,14 +44,47 @@ public class OptionsMenu extends JFrame {
         }); 
         buttonPanel.add(mainMenuButton);
 
-        //Quit button works!
-        JButton quitButton = new JButton("Quit Game");
-        quitButton.addActionListener(new ActionListener() {
+        //"Change Theme"
+        JLabel changeTheme = new JLabel("Change Theme");
+        changeTheme.setFont(new Font("Sans-serif", Font.BOLD, 16));
+        buttonPanel.add(changeTheme);
+
+        //Theme settings
+        JButton themeButton = new JButton("Quit Game");
+        themeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                //Action
             }
         }); 
-        buttonPanel.add(quitButton);
+        buttonPanel.add(themeButton);
+
+        //"Adjust Guesses"
+        JLabel adjustGuesses = new JLabel("Adjust Guesses");
+        adjustGuesses.setFont(new Font("Sans-serif", Font.BOLD, 16));
+        buttonPanel.add(adjustGuesses);
+
+        //Adjust guesses
+        JButton guessButton = new JButton("Quit Game");
+        guessButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Action
+            }
+        }); 
+        buttonPanel.add(guessButton);
+
+        //"Sound Effects"
+        JLabel soundEffects = new JLabel("Sound Effects");
+        soundEffects.setFont(new Font("Sans-serif", Font.BOLD, 16));
+        buttonPanel.add(soundEffects);
+
+        //Sound effects on/off
+        JButton soundButton = new JButton("Quit Game");
+        soundButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Action
+            }
+        }); 
+        buttonPanel.add(soundButton);
 
         layout.add(buttonPanel);
         panel.add(layout, BorderLayout.CENTER);
