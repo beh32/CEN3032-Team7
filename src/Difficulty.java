@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Difficulty {
 	private Random random;
-	private int maxLength;
+	public int maxLength;
 	
 	public Difficulty(String difficulty) {
 		random = new Random();

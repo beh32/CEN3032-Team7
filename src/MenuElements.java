@@ -79,10 +79,13 @@ public class MenuElements extends JComponent implements ActionListener {
 			
 			
 		} else if(e.getSource() == settingsButton) {
-			
-			//OPTIONS MENU TO BE ADDED WITH FUTURE SPRINT
+
+			new OptionsMenu();
+
 		} else if(e.getSource() == instructionsButton) {
+
 			instructionsFrame.setVisible(true);
+			
 		}
 		
 	}
