@@ -76,12 +76,12 @@ public class HangmanModel {
 
     public void endRound() { //FIX INSTANCE PROBLEM
 
-        if (wordGuessed) 
+        if (wordGuessed) {
             userPrompt = "You won!    ";
-        else
+        } else {
             userPrompt = "You lost! The word was: " + wordToGuess;
+        }
         // Disable input fields or handle end of game actions
-            
     }
 
     public String getWordDisplayString() {
@@ -98,6 +98,5 @@ public class HangmanModel {
 
     public String getPrompt() {
        return userPrompt; 
-    }
-
+   }
 }
