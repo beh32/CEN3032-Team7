@@ -31,8 +31,8 @@ public class HangmanUI {
     private CardLayout cardLayout;
     private JPanel bottomPanel;
 
-    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty, HangmanModel hm) {
-        this.hm = hm;
+    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
+        hm = new HangmanModel();
         this.hl = hl;
         this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;

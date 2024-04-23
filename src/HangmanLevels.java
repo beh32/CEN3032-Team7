@@ -9,8 +9,7 @@ public class HangmanLevels {
     }
 
     public void startHangman(String hangmanDifficulty) {
-        HangmanModel hm = new HangmanModel();
-        HangmanUI hu = new HangmanUI(currentLevel, this, hangmanDifficulty, hm);
+        HangmanUI hu = new HangmanUI(currentLevel, this, hangmanDifficulty);
         hu.initalizeUI();
     }
 
