@@ -100,4 +100,17 @@ public class HangmanModel {
        return userPrompt; 
     }
 
+    public void giveHint() {
+    	for (int = 0; i < wordToGuess.length(); i++) {
+    		char letter = wordToGuess.charAt(i);
+    		if (!usedLetters.contains(letter)) {
+    			usedLetters.add(letter);
+    			editWordDisplay();
+    			//userPrompt = "Hint: " + letter;
+    			//TODO create seperate panel/popup for hint button
+    			return;
+    		}
+    	}
+    	//userPrompt = "No hint available, word is revealed!";
+    }
 }
