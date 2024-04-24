@@ -104,11 +104,11 @@ public class HangmanModel {
     	for (int i = 0; i < wordToGuess.length(); i++) {
     		char letter = wordToGuess.charAt(i);
     		if (!usedLetters.contains(letter)) {
-    			usedLetters.add(letter);
-    			editWordDisplay();
-    			return;
+    			userPrompt = "Here's a Hint: " + letter;
     		}
     	}
-    	//userPrompt = "No hint available, word is revealed!";
+    	if(wordGuessed == true) {
+    	userPrompt = "Word is revealed!";
+    	}
     }
 }

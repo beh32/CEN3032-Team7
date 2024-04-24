@@ -76,6 +76,7 @@ public class HangmanUI {
             hint.addActionListener(new ActionListener() {
             	public void actionPerformed(ActionEvent e) {
             		hm.giveHint();
+            		textLabel.setText(hm.getPrompt());
             	}
             });
             
