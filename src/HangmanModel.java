@@ -100,4 +100,15 @@ public class HangmanModel {
        return userPrompt; 
     }
 
+    public void giveHint() {
+    	for (int i = 0; i < wordToGuess.length(); i++) {
+    		char letter = wordToGuess.charAt(i);
+    		if (!usedLetters.contains(letter)) {
+    			userPrompt = "Here's a Hint: " + letter;
+    		}
+    	}
+    	if(wordGuessed == true) {
+    	userPrompt = "Word is revealed!";
+    	}
+    }
 }
