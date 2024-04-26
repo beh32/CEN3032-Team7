@@ -3,8 +3,8 @@ import java.util.Set;
 
 public class HangmanModel {
 
-	private String wordToGuess;
-    private String wordDisplayString; 
+    private String wordToGuess;
+    private String wordDisplayString;
     private String userPrompt;
     private boolean wordGuessed;
     private int hangmanPartsDrawn;
@@ -26,26 +26,25 @@ public class HangmanModel {
     }
 
     private void getWord() {
-    	wordToGuess = difficulty.getWords(); //gets word from difficulty class
+        wordToGuess = difficulty.getWords(); // gets word from difficulty class
         wordDisplayString = "";
 
-        for (int i = 0; i < wordToGuess.length(); ++i) //blank spaces equal to word length 
+        for (int i = 0; i < wordToGuess.length(); ++i) // blank spaces equal to word length
             wordDisplayString += "_";
 
     }
 
     public void validateUserInput(char userInput) {
         this.userInput = userInput;
-        if (Character.isLetter(userInput)  && !usedLetters.contains(userInput)) { // input is letter but not used.
+        if (Character.isLetter(userInput) && !usedLetters.contains(userInput)) { // input is letter but not used.
             usedLetters.add(userInput);
-            
-            if (wordToGuess.contains(Character.toString(userInput))) { //check if letter is in word
-                
+
+            if (wordToGuess.contains(Character.toString(userInput))) { // check if letter is in word
+
                 userPrompt = userInput + " is correct!";
                 editWordDisplay();
 
-            
-                if (wordDisplayString.equals(wordToGuess)) 
+                if (wordDisplayString.equals(wordToGuess))
                     wordGuessed = true;
 
             }
@@ -56,25 +55,26 @@ public class HangmanModel {
                 // Add hangman UI drawing here
             }
         } else {
-            if (!usedLetters.contains(userInput)) 
-                userPrompt = "Please choose a Letter";    
-            else 
-                userPrompt = "Letter already used";    
-            
+            if (!usedLetters.contains(userInput))
+                userPrompt = "Please choose a Letter";
+            else
+                userPrompt = "Letter already used";
+
         }
 
-    }    
+    }
 
     private void editWordDisplay() {
         int index = wordToGuess.indexOf(userInput); // Swap code out for word display
-                    
-                while(index >= 0) { // find all instances
-                    wordDisplayString = wordDisplayString.substring(0, index) + userInput + wordDisplayString.substring(index+1);
-                    index = wordToGuess.indexOf(userInput, index+1);
-                }   
+
+        while (index >= 0) { // find all instances
+            wordDisplayString = wordDisplayString.substring(0, index) + userInput
+                    + wordDisplayString.substring(index + 1);
+            index = wordToGuess.indexOf(userInput, index + 1);
+        }
     }
 
-    public void endRound() { //FIX INSTANCE PROBLEM
+    public void endRound() { // FIX INSTANCE PROBLEM
 
         if (wordGuessed) {
             userPrompt = "You won!    ";
@@ -97,6 +97,18 @@ public class HangmanModel {
     }
 
     public String getPrompt() {
-       return userPrompt; 
-   }
+        return userPrompt;
+    }
+
+    public void giveHint() {
+        for (int i = 0; i < wordToGuess.length(); i++) {
+            char letter = wordToGuess.charAt(i);
+            if (!usedLetters.contains(letter)) {
+                userPrompt = "Here's a Hint: " + letter;
+            }
+        }
+        if (wordGuessed == true) {
+            userPrompt = "Word is revealed!";
+        }
+    }
 }

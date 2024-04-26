@@ -72,7 +72,18 @@ public class HangmanUI {
             }); 
 
             topPanel.add(back);
-
+            
+            JButton hint = new JButton("hint");
+            hint.setFont(new Font("Arial", Font.BOLD, 15));
+            hint.addActionListener(new ActionListener() {
+            	public void actionPerformed(ActionEvent e) {
+            		hm.giveHint();
+            		textLabel.setText(hm.getPrompt());
+            	}
+            });
+            
+            topPanel.add(hint);
+            
             JLabel level = new JLabel("Level " + Integer.toString(currentLevel));
             level.setFont(new Font("Sans-serif", Font.BOLD, 14));
             topPanel.add(level);
