@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,13 +29,18 @@ public class HangmanUI {
     private String hangmanDifficulty;
     private CardLayout cardLayout;
     private JPanel bottomPanel;
+    private boolean soundToggle;
+    private int volume;
 
-    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
+    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty, boolean soundToggle, int volume) {
         hm = new HangmanModel();
         this.hl = hl;
         this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;
         hm.hangmanRound(hangmanDifficulty);
+
+        this.soundToggle = soundToggle;
+        this.volume = volume;
     }
 
     public void initalizeUI() {
@@ -243,7 +247,7 @@ public class HangmanUI {
                     if (!hm.isWordGuessed()) 
                         hl = new HangmanLevels();
                         
-                    hl.startHangman(hangmanDifficulty); //FIX INSTANCE PROBLEM
+                    hl.startHangman(hangmanDifficulty, soundToggle, volume); //FIX INSTANCE PROBLEM
                 }
             }); 
             card2.add(b2);

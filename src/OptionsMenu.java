@@ -1,16 +1,35 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 
 
 public class OptionsMenu extends JFrame {
+
+    private boolean soundToggle = true;
+    private int volume = 30;
+
     public OptionsMenu() {
         super("Options Menu");
+    }
+
+    public void createOptionsMenu() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
 
@@ -104,10 +123,10 @@ public class OptionsMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (soundToggleButton.isSelected()) {
                     soundToggleButton.setText("Toggle Sound On");
-                    // Turn sound on
+                    soundToggle = false;
                 } else {
                     soundToggleButton.setText("Toggle Sound Off");
-                    // Turn sound off
+                    soundToggle = true;
                 }
             }
         });
@@ -124,7 +143,7 @@ public class OptionsMenu extends JFrame {
         volumeSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 // Get the new value of the slider
-                int volume = volumeSlider.getValue();
+                volume = volumeSlider.getValue();
                 // Adjust sound volume based on the new value
             }
         });
@@ -174,6 +193,14 @@ public class OptionsMenu extends JFrame {
         setVisible(true); 
 
     
+    }
+
+    public boolean getSoundToggle() {
+        return soundToggle;
+    }
+
+    public int getVolume() {
+        return volume;
     }
 
 }

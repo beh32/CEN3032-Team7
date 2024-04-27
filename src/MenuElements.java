@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -23,6 +22,7 @@ public class MenuElements extends JComponent implements ActionListener {
 	private JButton settingsButton = new JButton("Settings");
 	private JButton instructionsButton = new JButton("Instructions");
 	private static BufferedImage menuBackground;
+	private OptionsMenu optionsMenu;
 
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
 	private JFrame menuFrame;
@@ -33,6 +33,7 @@ public class MenuElements extends JComponent implements ActionListener {
 		quitButton.addActionListener(this);
 		settingsButton.addActionListener(this);
 		instructionsButton.addActionListener(this);
+		optionsMenu = new OptionsMenu();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -76,12 +77,12 @@ public class MenuElements extends JComponent implements ActionListener {
     
 			menuFrame.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
-			hl.startHangman(options[selection]); //FIX INSTANCE PROBLEM
+			hl.startHangman(options[selection], optionsMenu.getSoundToggle(), optionsMenu.getVolume()); //FIX INSTANCE PROBLEM
 			
 			
 		} else if(e.getSource() == settingsButton) {
 
-			new OptionsMenu();
+			optionsMenu.createOptionsMenu();
 
 		} else if(e.getSource() == instructionsButton) {
 
