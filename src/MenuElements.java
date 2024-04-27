@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -21,7 +23,7 @@ public class MenuElements extends JComponent implements ActionListener {
 	private JButton settingsButton = new JButton("Settings");
 	private JButton instructionsButton = new JButton("Instructions");
 	private static BufferedImage menuBackground;
-	
+
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
 	private JFrame menuFrame;
 
@@ -60,7 +62,6 @@ public class MenuElements extends JComponent implements ActionListener {
 		instructionsButton.setBounds(880, 200, 200, 70);
 		instructionsButton.setFont(new Font("Arial", Font.BOLD, 20));
 		super.add(instructionsButton);
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {

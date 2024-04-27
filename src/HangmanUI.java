@@ -8,8 +8,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,6 +28,8 @@ public class HangmanUI {
     private String row1 = "a b c d e f g h i j k l m ";
     private String row2 = "n o p q r s t u v w x y z ";
     private String hangmanDifficulty;
+    private CardLayout cardLayout;
+    private JPanel bottomPanel;
 
     public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
         hm = new HangmanModel();
@@ -33,8 +37,6 @@ public class HangmanUI {
         this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;
         hm.hangmanRound(hangmanDifficulty);
-        
-
     }
 
     public void initalizeUI() {
@@ -124,6 +126,10 @@ public class HangmanUI {
         
         centerPanel.revalidate();
         centerPanel.repaint();
+
+        if (hm.getHangmanPartsDrawn() == 6) {
+            displayGameOverAlert(hl.getCurrentScore());
+        }
     }
 
     private JLabel createStickFigure(int parts) {
@@ -176,8 +182,8 @@ public class HangmanUI {
     }
 
     private JPanel createBottomPanel() {
-        JPanel bottomPanel = new JPanel(new CardLayout());
-        CardLayout cardLayout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel = new JPanel(new CardLayout());
+        cardLayout = (CardLayout) bottomPanel.getLayout();
         JPanel card1 = new JPanel();
 
             JLabel guessLabel= new JLabel("Guess a letter!");
@@ -192,7 +198,7 @@ public class HangmanUI {
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
-                    updateCenterPanel(guess);
+
 
                     if (hm.getHangmanPartsDrawn() == 6) {
                         b2.setText("Restart");
@@ -208,7 +214,7 @@ public class HangmanUI {
                         textLabel.setForeground(Color.GREEN);
                         textLabel.setText(hm.getPrompt());
                     }        
-            
+                    updateCenterPanel(guess);
                 }
 
                 });
@@ -221,7 +227,6 @@ public class HangmanUI {
             JButton b1 = new JButton("Return to Menu");
             b1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-
                     frame.setVisible(false);
                     OpeningMenu hangmanMenu = new OpeningMenu();
                     hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
@@ -232,7 +237,6 @@ public class HangmanUI {
             b2 = new JButton("Continue");
             b2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    
                     frame.setVisible(false);
                     hl.increaseLevel();
 
@@ -245,8 +249,15 @@ public class HangmanUI {
             card2.add(b2);
 
             bottomPanel.add(card2);
-            
 
             return bottomPanel;
     }
+
+    private void displayGameOverAlert(int currentScore) {
+        String message = "Game Over!\n";
+        message += "Game score: " + currentScore + "\n";
+
+        JOptionPane.showMessageDialog(frame, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }
