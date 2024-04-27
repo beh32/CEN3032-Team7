@@ -25,6 +25,7 @@ public class MenuElements extends JComponent implements ActionListener {
 	private static BufferedImage menuBackground;
 
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
+	private OptionsMenu optionsMenu = new OptionsMenu();
 	private JFrame menuFrame;
 
 	public MenuElements(JFrame menuFrame) {
@@ -75,13 +76,14 @@ public class MenuElements extends JComponent implements ActionListener {
 			0, 3, null, options, options[0]);
     
 			menuFrame.setVisible(false);
+			optionsMenu.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
-			hl.startHangman(options[selection]); //FIX INSTANCE PROBLEM
+			hl.startHangman(options[selection], optionsMenu.getTheme()); //FIX INSTANCE PROBLEM
 			
 			
 		} else if(e.getSource() == settingsButton) {
 
-			new OptionsMenu();
+			optionsMenu.setVisible(true);
 
 		} else if(e.getSource() == instructionsButton) {
 

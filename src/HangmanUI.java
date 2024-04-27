@@ -30,13 +30,15 @@ public class HangmanUI {
     private String hangmanDifficulty;
     private CardLayout cardLayout;
     private JPanel bottomPanel;
+    private String theme;
 
-    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
+    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty, String theme) {
         hm = new HangmanModel();
         this.hl = hl;
         this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;
         hm.hangmanRound(hangmanDifficulty);
+        this.theme = theme;
     }
 
     public void initalizeUI() {
@@ -135,17 +137,17 @@ public class HangmanUI {
     private JLabel createStickFigure(int parts) {
         ImageIcon stickFigureIcon = new ImageIcon();
         if (parts == 1) {
-            stickFigureIcon = new ImageIcon("./images/1.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/1.png");
         } else if (parts == 2) {
-            stickFigureIcon = new ImageIcon("./images/2.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/2.png");
         } else if (parts == 3) {
-            stickFigureIcon = new ImageIcon("./images/3.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/3.png");
         } else if (parts == 4) {
-            stickFigureIcon = new ImageIcon("./images/4.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/4.png");
         } else if (parts == 5) {
-            stickFigureIcon = new ImageIcon("./images/5.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/5.png");
         } else if (parts == 6) {
-            stickFigureIcon = new ImageIcon("./images/6.png");
+            stickFigureIcon = new ImageIcon("./images/" + theme + "/6.png");
         } else {
             stickFigureIcon = new ImageIcon("./images/empty.png");
         }
@@ -243,7 +245,7 @@ public class HangmanUI {
                     if (!hm.isWordGuessed()) 
                         hl = new HangmanLevels();
                         
-                    hl.startHangman(hangmanDifficulty); //FIX INSTANCE PROBLEM
+                    hl.startHangman(hangmanDifficulty, theme); //FIX INSTANCE PROBLEM
                 }
             }); 
             card2.add(b2);
