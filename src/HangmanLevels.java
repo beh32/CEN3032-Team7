@@ -8,8 +8,8 @@ public class HangmanLevels {
         this.currentScore = 0;
     }
 
-    public void startHangman(String hangmanDifficulty) {
-        HangmanUI hu = new HangmanUI(currentLevel, this, hangmanDifficulty);
+    public void startHangman(String hangmanDifficulty, String theme) {
+        HangmanUI hu = new HangmanUI(currentLevel, this, hangmanDifficulty, theme);
         hu.initalizeUI();
     }
 
