@@ -66,20 +66,21 @@ public class MenuElements extends JComponent implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		SoundPlayer.playSound("sounds/generic_button.wav");
 		if(e.getSource() == quitButton) {
+
 			System.exit(0);
 		} else if(e.getSource() == startButton) {
 			
-
 			String[] options = { "easy", "medium", "hard" };
     		var selection = JOptionPane.showOptionDialog(null, "Select one:", "Choose a Difficulty", 
 			0, 3, null, options, options[0]);
-    
+			SoundPlayer.playSound("sounds/generic_button.wav");
 			menuFrame.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
 			hl.startHangman(options[selection], optionsMenu.getSoundToggle(), optionsMenu.getVolume()); //FIX INSTANCE PROBLEM
-			
-			
+
+
 		} else if(e.getSource() == settingsButton) {
 
 			optionsMenu.createOptionsMenu();
@@ -87,8 +88,8 @@ public class MenuElements extends JComponent implements ActionListener {
 		} else if(e.getSource() == instructionsButton) {
 
 			instructionsFrame.setVisible(true);
-			
+
 		}
-		
+
 	}
 }

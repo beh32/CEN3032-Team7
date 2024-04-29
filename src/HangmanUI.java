@@ -69,6 +69,7 @@ public class HangmanUI {
             JButton back = new JButton(backIcon);
             back.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundPlayer.playSound("sounds/generic_button.wav");
                     frame.setVisible(false);
                     OpeningMenu hangmanMenu = new OpeningMenu();
                     hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
@@ -81,6 +82,7 @@ public class HangmanUI {
             hint.setFont(new Font("Arial", Font.BOLD, 15));
             hint.addActionListener(new ActionListener() {
             	public void actionPerformed(ActionEvent e) {
+                    SoundPlayer.playSound("sounds/generic_button.wav");
             		hm.giveHint();
             		textLabel.setText(hm.getPrompt());
             	}
@@ -96,7 +98,7 @@ public class HangmanUI {
             JButton pause = new JButton(pauseIcon); 
             pause.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // Not sure what the pause button is for but the logic for that goes in here
+                    SoundPlayer.playSound("sounds/generic_button.wav");
                     new PauseMenu();
                 }
             });
@@ -132,6 +134,7 @@ public class HangmanUI {
         centerPanel.repaint();
 
         if (hm.getHangmanPartsDrawn() == 6) {
+            SoundPlayer.playSound("sounds/bad_sound.wav");
             displayGameOverAlert(hl.getCurrentScore());
         }
     }
@@ -202,9 +205,19 @@ public class HangmanUI {
                     guessField.setText("");
                     wordBlanks.setText(hm.getWordDisplayString().replace("", " "));
                     textLabel.setText(hm.getPrompt());
+                    if (hm.getPrompt().contains("is correct!")) 
+                        SoundPlayer.playSound("sounds/good_sound.wav");
+                    
+                    else if (hm.getPrompt().contains("is incorrect!")) 
+                        SoundPlayer.playSound("sounds/bad_sound.wav");
+                    
+                    else 
+                    SoundPlayer.playSound("sounds/generic_button.wav");
+                    
 
 
                     if (hm.getHangmanPartsDrawn() == 6) {
+                        SoundPlayer.playSound("sounds/bad_sound.wav");
                         b2.setText("Restart");
                         cardLayout.next(bottomPanel);
                         hm.endRound();
@@ -213,6 +226,7 @@ public class HangmanUI {
                     }
 
                     if (hm.isWordGuessed()) {
+                        SoundPlayer.playSound("sounds/win.wav");
                         cardLayout.next(bottomPanel);
                         hm.endRound();
                         textLabel.setForeground(Color.GREEN);
@@ -231,6 +245,7 @@ public class HangmanUI {
             JButton b1 = new JButton("Return to Menu");
             b1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundPlayer.playSound("sounds/generic_button.wav");
                     frame.setVisible(false);
                     OpeningMenu hangmanMenu = new OpeningMenu();
                     hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
@@ -241,6 +256,7 @@ public class HangmanUI {
             b2 = new JButton("Continue");
             b2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    SoundPlayer.playSound("sounds/generic_button.wav");
                     frame.setVisible(false);
                     hl.increaseLevel();
 
@@ -262,6 +278,7 @@ public class HangmanUI {
         message += "Game score: " + currentScore + "\n";
 
         JOptionPane.showMessageDialog(frame, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        SoundPlayer.playSound("sounds/generic_button.wav");
     }
 
 }
