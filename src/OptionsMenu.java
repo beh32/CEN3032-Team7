@@ -20,6 +20,7 @@ import javax.swing.event.ChangeListener;
 
 
 public class OptionsMenu extends JFrame {
+    private String theme = "default";
 
     public OptionsMenu() {
         super("Options Menu");
@@ -57,7 +58,7 @@ public class OptionsMenu extends JFrame {
         theme1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add theme change logic here
+                theme = "default";
             }
         });
         buttonPanel.add(theme1Button);
@@ -68,7 +69,7 @@ public class OptionsMenu extends JFrame {
         theme2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add theme change logic here
+                theme = "pirate";
             }
         });
         buttonPanel.add(theme2Button);
@@ -79,7 +80,7 @@ public class OptionsMenu extends JFrame {
         theme3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add theme change logic here
+                theme = "cowboy";
             }
         });
         buttonPanel.add(theme3Button);
@@ -191,6 +192,10 @@ public class OptionsMenu extends JFrame {
         setVisible(true); 
 
     
+    }
+
+    public String getTheme() {
+        return theme;
     }
 
 }
