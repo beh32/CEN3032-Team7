@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 public class MenuElements extends JComponent implements ActionListener {
 
@@ -23,6 +22,7 @@ public class MenuElements extends JComponent implements ActionListener {
 	private JButton settingsButton = new JButton("Settings");
 	private JButton instructionsButton = new JButton("Instructions");
 	private static BufferedImage menuBackground;
+	private OptionsMenu optionsMenu;
 
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
 	private OptionsMenu optionsMenu = new OptionsMenu();
@@ -34,6 +34,7 @@ public class MenuElements extends JComponent implements ActionListener {
 		quitButton.addActionListener(this);
 		settingsButton.addActionListener(this);
 		instructionsButton.addActionListener(this);
+		optionsMenu = new OptionsMenu();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -66,15 +67,16 @@ public class MenuElements extends JComponent implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		SoundPlayer.playSound("sounds/generic_button.wav");
 		if(e.getSource() == quitButton) {
+
 			System.exit(0);
 		} else if(e.getSource() == startButton) {
 			
-
 			String[] options = { "easy", "medium", "hard" };
     		var selection = JOptionPane.showOptionDialog(null, "Select one:", "Choose a Difficulty", 
 			0, 3, null, options, options[0]);
-    
+			SoundPlayer.playSound("sounds/generic_button.wav");
 			menuFrame.setVisible(false);
 			optionsMenu.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
@@ -85,11 +87,12 @@ public class MenuElements extends JComponent implements ActionListener {
 
 			optionsMenu.setVisible(true);
 
+
 		} else if(e.getSource() == instructionsButton) {
 
 			instructionsFrame.setVisible(true);
-			
+
 		}
-		
+
 	}
 }

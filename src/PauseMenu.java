@@ -30,6 +30,7 @@ public class PauseMenu extends JFrame {
         JButton resumeButton = new JButton("Resume Game");
         resumeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                SoundPlayer.playSound("sounds/generic_button.wav");
                 //To resume the game, exit out of the pause menu
                 //But keep the game open
                 dispose();
@@ -42,7 +43,7 @@ public class PauseMenu extends JFrame {
         JButton optionsButton = new JButton("Options");
         optionsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //This would bring up the options menu
+                SoundPlayer.playSound("sounds/generic_button.wav");
                 new OptionsMenu();
             }
         }); 
@@ -53,7 +54,7 @@ public class PauseMenu extends JFrame {
         // Add the controller as an ActionListener to the button
         mainMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Doesn't work
+                SoundPlayer.playSound("sounds/generic_button.wav");
                 OpeningMenu hangmanMenu = new OpeningMenu();
                 hangmanMenu.createOpeningMenu(); //FIX INSTANCE PROBLEM
             }
@@ -64,6 +65,7 @@ public class PauseMenu extends JFrame {
         JButton quitButton = new JButton("Quit Game");
         quitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                SoundPlayer.playSound("sounds/generic_button.wav");
                 System.exit(0);
             }
         }); 
