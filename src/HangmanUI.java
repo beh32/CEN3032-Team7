@@ -29,18 +29,14 @@ public class HangmanUI {
     private String hangmanDifficulty;
     private CardLayout cardLayout;
     private JPanel bottomPanel;
-    private boolean soundToggle;
-    private int volume;
 
-    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty, boolean soundToggle, int volume) {
+    public HangmanUI(int currentLevel, HangmanLevels hl, String hangmanDifficulty) {
         hm = new HangmanModel();
         this.hl = hl;
         this.hangmanDifficulty = hangmanDifficulty;
         this.currentLevel = currentLevel;
         hm.hangmanRound(hangmanDifficulty);
 
-        this.soundToggle = soundToggle;
-        this.volume = volume;
     }
 
     public void initalizeUI() {
@@ -263,7 +259,7 @@ public class HangmanUI {
                     if (!hm.isWordGuessed()) 
                         hl = new HangmanLevels();
                         
-                    hl.startHangman(hangmanDifficulty, soundToggle, volume); //FIX INSTANCE PROBLEM
+                    hl.startHangman(hangmanDifficulty); //FIX INSTANCE PROBLEM
                 }
             }); 
             card2.add(b2);

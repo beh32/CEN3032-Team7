@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
-import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -21,9 +20,6 @@ import javax.swing.event.ChangeListener;
 
 
 public class OptionsMenu extends JFrame {
-
-    private boolean soundToggle = true;
-    private int volume = 30;
 
     public OptionsMenu() {
         super("Options Menu");
@@ -118,15 +114,16 @@ public class OptionsMenu extends JFrame {
         buttonPanel.add(soundEffects);
 
         //Sound effects on/off
-        JToggleButton soundToggleButton = new JToggleButton("Toggle Sound On");
+        JButton soundToggleButton = new JButton("Toggle Sound On");
         soundToggleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (soundToggleButton.isSelected()) {
+                SoundPlayer.playSound("sounds/generic_button.wav");
+                if (soundToggleButton.getText() == "Toggle Sound Off") {
                     soundToggleButton.setText("Toggle Sound On");
-                    soundToggle = false;
+                    SoundPlayer.toggleSound();
                 } else {
                     soundToggleButton.setText("Toggle Sound Off");
-                    soundToggle = true;
+                    SoundPlayer.toggleSound();
                 }
             }
         });
@@ -135,7 +132,7 @@ public class OptionsMenu extends JFrame {
         //Volume slider for adjusting sound volume
         JLabel volumeLabel = new JLabel("Volume");
         volumeLabel.setFont(new Font("Sans-serif", Font.BOLD, 14));
-        JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 60, 30); // Min, Max, Initial
+        JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50); // Min, Max, Initial
         volumeSlider.setMajorTickSpacing(10);
         volumeSlider.setMinorTickSpacing(5);
         volumeSlider.setPaintTicks(true);
@@ -143,7 +140,7 @@ public class OptionsMenu extends JFrame {
         volumeSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 // Get the new value of the slider
-                volume = volumeSlider.getValue();
+                SoundPlayer.updateVolume(volumeSlider.getValue());
                 // Adjust sound volume based on the new value
             }
         });
@@ -167,6 +164,7 @@ public class OptionsMenu extends JFrame {
                     //Turn sound off
                     soundToggleButton.setSelected(true);
                     soundToggleButton.setText("Toggle Sound On");
+                    SoundPlayer.updateVolume(50);
             }
         }); 
         buttonPanel.add(resetButton);
@@ -193,14 +191,6 @@ public class OptionsMenu extends JFrame {
         setVisible(true); 
 
     
-    }
-
-    public boolean getSoundToggle() {
-        return soundToggle;
-    }
-
-    public int getVolume() {
-        return volume;
     }
 
 }

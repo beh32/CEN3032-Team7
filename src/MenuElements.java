@@ -78,7 +78,7 @@ public class MenuElements extends JComponent implements ActionListener {
 			SoundPlayer.playSound("sounds/generic_button.wav");
 			menuFrame.setVisible(false);
 			HangmanLevels hl = new HangmanLevels();
-			hl.startHangman(options[selection], optionsMenu.getSoundToggle(), optionsMenu.getVolume()); //FIX INSTANCE PROBLEM
+			hl.startHangman(options[selection]); //FIX INSTANCE PROBLEM
 
 
 		} else if(e.getSource() == settingsButton) {
