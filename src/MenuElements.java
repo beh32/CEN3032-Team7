@@ -22,10 +22,9 @@ public class MenuElements extends JComponent implements ActionListener {
 	private JButton settingsButton = new JButton("Settings");
 	private JButton instructionsButton = new JButton("Instructions");
 	private static BufferedImage menuBackground;
-	private OptionsMenu optionsMenu;
+	private OptionsMenu optionsMenu = new OptionsMenu();
 
 	private InstructionsFrame instructionsFrame = new InstructionsFrame();
-	private OptionsMenu optionsMenu = new OptionsMenu();
 	private JFrame menuFrame;
 
 	public MenuElements(JFrame menuFrame) {
@@ -34,7 +33,9 @@ public class MenuElements extends JComponent implements ActionListener {
 		quitButton.addActionListener(this);
 		settingsButton.addActionListener(this);
 		instructionsButton.addActionListener(this);
-		optionsMenu = new OptionsMenu();
+		optionsMenu.createOptionsMenu();
+		optionsMenu.setVisible(false);
+		
 	}
 	
 	public void paintComponent(Graphics g) {
